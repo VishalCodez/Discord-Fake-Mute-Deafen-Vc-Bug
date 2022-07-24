@@ -42,3 +42,4 @@ WebSocket.prototype.send = function(data) {
 ```
 
 Note This Hack Is Only Works On Discord Application
+thanks 
