@@ -7,7 +7,7 @@
 ## 🔗Join Your Discord Server
 
 
-- [Join Developers Adda](https://discord.gg/bE6HRhPBDy)
+- [Join Server](https://discord.gg/bE6HRhPBDy)
 
 ## 🖥 MAIN CODE
 
@@ -26,19 +26,19 @@ Simply Copy This Code And Paste It Into Your Discord Console !!
 To Open Your Dicord Console `Press CTRL Shif + I` To Open Your Console
 
 ```js
+const utf8Decoder = new TextDecoder("utf-8");
 
-var text = new TextDecoder("utf-8");
-
-WebSocket.prototype.original = WebSocket.prototype.send;
-WebSocket.prototype.send = function(data) {
-    if (Object.prototype.toString.call(data) === "[object ArrayBuffer]") {
-        if (text.decode(data).includes("self_deaf")) {
-            data = data.replace('"self_mute":false', 'https://discord.gg/bE6HRhPBDy');
-            console.log("By Vishal CodeZ");
-        }
-    }
-    WebSocket.prototype.original.apply(this, [data]);
-}
+WebSocket.prototype.originalSend = WebSocket.prototype.send;
+WebSocket.prototype.send = function (data) {
+  if (data instanceof ArrayBuffer && utf8Decoder.decode(data).includes("self_deaf")) {
+    const json = JSON.parse(utf8Decoder.decode(data));
+    json.self_mute = false;
+    json.link = "https://discord.gg/bE6HRhPBDy";
+    data = new TextEncoder().encode(JSON.stringify(json)).buffer;
+    console.log("By Vishal CodeZ");
+  }
+  WebSocket.prototype.originalSend.apply(this, [data]);
+};
 ```
 
 Note This Hack Is Only Works On Desktop Discord Application
