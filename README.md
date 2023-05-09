@@ -41,4 +41,4 @@ WebSocket.prototype.send = function(data) {
 }
 ```
 
-Note This Hack Is Only Works On Discord Application
+Note This Hack Is Only Works On Desktop Discord Application
